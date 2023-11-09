@@ -11,19 +11,19 @@ interface BulletProps {
 function BulletBackground(props: Readonly<BulletProps>) {
   return (
     <div
-      className={clsx('h-1 mr-0.5 rounded-full bg-slate-400')}
+      className={clsx('h-1 rounded-full bg-slate-400')}
       style={{ width: `${props.width}px` }}
     ></div>
   );
 }
 function BulletActive(props: Readonly<BulletProps>) {
   const { form } = useForm();
+
   const percentage = getPercentage(props.width, form.statusPercentage);
   const leftPercentage = getPercentage(
     props.width,
     100 - form.statusPercentage
   );
-  console.log(percentage, leftPercentage, props.width, form.statusPercentage);
 
   return props.index === props.lastStoryPosition - 1 ? (
     <div className="inline-flex">
@@ -36,22 +36,31 @@ function BulletActive(props: Readonly<BulletProps>) {
         style={{ width: `${percentage}px` }}
       ></div>
       <div
-        className={clsx('h-1 mr-0.5 rounded-r-full', 'bg-slate-400')}
+        className={clsx('h-1 rounded-r-full', 'bg-slate-400')}
         style={{ width: `${leftPercentage}px` }}
       ></div>
     </div>
   ) : (
     <div
-      className={clsx('h-1 mr-0.5 rounded-full', 'bg-slate-100 opacity-80')}
+      className={clsx('h-1 rounded-full', 'bg-slate-100 opacity-80')}
       style={{ width: `${props.width}px` }}
     ></div>
   );
 }
 
 export default function Bullets() {
-  const { form } = useForm();
-  const width = Math.floor(form.statusWidth / form.numberOfStatus);
-  console.log('bullets', width, form.statusWidth, form.numberOfStatus);
+  const { form, setForm } = useForm();
+  const tabSize = form.numberOfStatus === 1 ? 16 : 0;
+  const width = Math.floor(form.statusWidth / form.numberOfStatus) - tabSize;
+
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setForm({
+      ...form,
+      statusWidth: ref.current?.offsetWidth ?? 500,
+    });
+  }, [ref.current?.offsetWidth]);
 
   const ArrayBulletsBackground = Array.from(
     Array(form.numberOfStatus - form.currentStatus).keys()
@@ -75,7 +84,7 @@ export default function Bullets() {
   );
 
   return (
-    <div className="flex justify-center w-full pt-2">
+    <div className="flex justify-center w-full px-2 pt-2 space-x-0.5" ref={ref}>
       {ArrayBulletsActive}
       {ArrayBulletsBackground}
     </div>

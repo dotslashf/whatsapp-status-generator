@@ -15,7 +15,7 @@ export default function FormStatus() {
   useLayoutEffect(() => {
     setForm({
       ...form,
-      statusWidth: (ref.current?.offsetWidth ?? 500) - 16,
+      statusWidth: ref.current?.offsetWidth ?? 500,
     });
   }, [ref.current?.offsetWidth]);
 

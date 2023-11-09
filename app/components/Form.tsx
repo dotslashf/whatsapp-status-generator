@@ -7,7 +7,9 @@ export default function Form() {
 
   return (
     <div className="flex flex-col w-full pb-4 space-y-3">
-      <h1 className="text-lg font-bold">Bikin Status Palsu Whatsapp 🤓</h1>
+      <h1 className="text-lg font-bold text-center">
+        Bikin Status Palsu Whatsapp 🤓
+      </h1>
       <InputWithLabel
         id="status"
         type="textarea"
@@ -25,7 +27,7 @@ export default function Form() {
         placeholder="Masukkan Jumlah Status"
         value={form.numberOfStatus}
         onChange={(e) => {
-          if (Number(e.target.value) < 1) {
+          if (Number(e.target.value) < 0 || e.target.value === '') {
             setForm({ ...form, numberOfStatus: 1 });
           } else if (Number(e.target.value) < form.currentStatus) {
             setForm({ ...form, numberOfStatus: form.currentStatus });

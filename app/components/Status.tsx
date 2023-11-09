@@ -1,26 +1,17 @@
 import Bullets from '@/components/ui/bullet';
-import { getRandomPositionStatus } from '@/lib/utils';
 import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar';
-import { useEffect, useRef } from 'react';
-import { useForm } from '../hooks/useForm';
-import { get } from 'http';
 
 interface StatusProps {
-  count: number;
-  imageSize: number;
   status: string;
   innerRef: React.RefObject<HTMLDivElement>;
-  lastStatusPosition: number;
 }
 export default function Status(props: Readonly<StatusProps>) {
-  const { form } = useForm();
-
   return (
     <div
-      className="relative flex flex-col text-xs text-white bg-slate-600 w-width-status h-height-status"
+      className="relative flex flex-col w-full h-full text-xs text-white bg-slate-600 aspect-status"
       ref={props.innerRef}
     >
-      <Bullets count={props.count} imageSize={props.imageSize} />
+      <Bullets />
       <div className="flex items-center pt-2 pl-2 space-x-2">
         <Avatar className="w-8 h-8">
           <AvatarImage

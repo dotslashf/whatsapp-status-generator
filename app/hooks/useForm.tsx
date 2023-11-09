@@ -1,18 +1,20 @@
 import React, { useState, createContext, useMemo } from 'react';
 
-const MIN_STATUS = 4;
+const MIN_STATUS = 1;
 const initialForm = {
   status:
     'Culpa non velit aliqua aliquip cupidatat quis. Duis non exercitation irure occaecat. Sit ea cillum ullamco id nisi sit nostrud aliquip qui tempor veniam. Labore sit mollit quis.',
   numberOfStatus: MIN_STATUS,
-  currentStatus: Math.floor(MIN_STATUS / 2),
+  currentStatus: 1,
   statusPercentage: 50,
+  statusWidth: 0,
 };
 interface Form {
   status: string;
   numberOfStatus: number;
   currentStatus: number;
   statusPercentage: number;
+  statusWidth: number;
 }
 const FormContext = createContext({
   form: initialForm,

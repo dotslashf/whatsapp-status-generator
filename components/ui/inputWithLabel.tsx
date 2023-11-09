@@ -13,12 +13,12 @@ interface InputWithLabelProps {
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLTextAreaElement>
   ) => void;
-  onKeyDown?: any;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   placeholder?: string;
 }
 export function InputWithLabel(props: Readonly<InputWithLabelProps>) {
   return (
-    <div className="grid w-full max-w-sm items-center gap-1.5">
+    <div className="grid items-center w-full max-w-lg gap-y-2">
       <Label htmlFor={props.id}>{props.name}</Label>
       {props.type === 'textarea' ? (
         <Textarea

@@ -1,7 +1,7 @@
 import { useForm } from '@/app/hooks/useForm';
-import { getPercentage, getRandomPositionStatus } from '@/lib/utils';
+import { getPercentage } from '@/lib/utils';
 import clsx from 'clsx';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface BulletProps {
   width: number;
@@ -23,6 +23,8 @@ function BulletActive(props: Readonly<BulletProps>) {
     props.width,
     100 - form.statusPercentage
   );
+  console.log(percentage, leftPercentage, props.width, form.statusPercentage);
+
   return props.index === props.lastStoryPosition - 1 ? (
     <div className="inline-flex">
       <div
@@ -46,16 +48,13 @@ function BulletActive(props: Readonly<BulletProps>) {
   );
 }
 
-interface BulletsProps {
-  count: number;
-  imageSize: number;
-}
-export default function Bullets(props: Readonly<BulletsProps>) {
+export default function Bullets() {
   const { form } = useForm();
-  const width = props.imageSize / props.count;
+  const width = Math.floor(form.statusWidth / form.numberOfStatus);
+  console.log('bullets', width, form.statusWidth, form.numberOfStatus);
 
   const ArrayBulletsBackground = Array.from(
-    Array(props.count - form.currentStatus).keys()
+    Array(form.numberOfStatus - form.currentStatus).keys()
   ).map((i) => (
     <BulletBackground
       key={i}
@@ -76,7 +75,7 @@ export default function Bullets(props: Readonly<BulletsProps>) {
   );
 
   return (
-    <div className="flex px-2 pt-2 w-width-status">
+    <div className="flex justify-center w-full pt-2">
       {ArrayBulletsActive}
       {ArrayBulletsBackground}
     </div>

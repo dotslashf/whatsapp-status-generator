@@ -1,22 +1,23 @@
 import { InputWithLabel } from '@/components/ui/inputWithLabel';
 import { useForm } from '../hooks/useForm';
-import { useEffect } from 'react';
-import { getRandomPositionStatus } from '@/lib/utils';
+import { KeyboardEvent } from 'react';
 
 export default function Form() {
   const { form, setForm } = useForm();
 
-  function onKeyDown(e) {
-    if (e.keyCode === 40) {
-      setForm({ ...form, statusPercentage: (form.statusPercentage -= 9) });
-    } else if (e.keyCode === 38) {
-      setForm({ ...form, statusPercentage: (form.statusPercentage += 9) });
-    }
-  }
-
   return (
-    <div className="flex flex-col pb-4 space-y-4">
+    <div className="flex flex-col w-full pb-4 space-y-3">
       <h1 className="text-lg font-bold">Bikin Status Palsu Whatsapp 🤓</h1>
+      <InputWithLabel
+        id="status"
+        type="textarea"
+        name="Status: "
+        placeholder="Masukkan Status"
+        value={form.status}
+        onChange={(e) => {
+          setForm({ ...form, status: e.target.value });
+        }}
+      />
       <InputWithLabel
         id="numberOfStatus"
         type="number"
@@ -26,6 +27,8 @@ export default function Form() {
         onChange={(e) => {
           if (Number(e.target.value) < 1) {
             setForm({ ...form, numberOfStatus: 1 });
+          } else if (Number(e.target.value) < form.currentStatus) {
+            setForm({ ...form, numberOfStatus: form.currentStatus });
           } else {
             setForm({ ...form, numberOfStatus: Number(e.target.value) });
           }
@@ -55,7 +58,7 @@ export default function Form() {
           placeholder="Masukkan Persentase Status"
           value={form.statusPercentage}
           onChange={(e) => {
-            if (Number(e.target.value) < 20) {
+            if (Number(e.target.value) < 10) {
               setForm({ ...form, statusPercentage: 10 });
             } else if (Number(e.target.value) > 100) {
               setForm({ ...form, statusPercentage: 100 });
@@ -63,19 +66,8 @@ export default function Form() {
               setForm({ ...form, statusPercentage: Number(e.target.value) });
             }
           }}
-          onKeyDown={(e) => onKeyDown(e)}
         />
       </div>
-      <InputWithLabel
-        id="status"
-        type="textarea"
-        name="Status: "
-        placeholder="Masukkan Status"
-        value={form.status}
-        onChange={(e) => {
-          setForm({ ...form, status: e.target.value });
-        }}
-      />
     </div>
   );
 }

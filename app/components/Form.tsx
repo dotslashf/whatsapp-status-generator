@@ -1,6 +1,8 @@
 import { InputWithLabel } from '@/components/ui/inputWithLabel';
 import { useForm } from '../hooks/useForm';
 import { KeyboardEvent } from 'react';
+import { Separator } from '@/components/ui/separator';
+import DatePicker from '@/components/ui/datepicker';
 
 export default function Form() {
   const { form, setForm } = useForm();
@@ -20,6 +22,8 @@ export default function Form() {
           setForm({ ...form, status: e.target.value });
         }}
       />
+      <DatePicker />
+      <Separator className="border border-slate-300 opacity-60" />
       <InputWithLabel
         id="numberOfStatus"
         type="number"
@@ -70,6 +74,7 @@ export default function Form() {
           }}
         />
       </div>
+      <Separator className="border border-slate-300 opacity-60" />
     </div>
   );
 }

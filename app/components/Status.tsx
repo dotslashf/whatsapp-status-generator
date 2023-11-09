@@ -1,11 +1,18 @@
 import Bullets from '@/components/ui/bullet';
 import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar';
+import { useForm } from '../hooks/useForm';
+import { formatDistance, formatRelative, intervalToDuration } from 'date-fns';
+import { id } from 'date-fns/locale';
+import { dateTimeRelevance } from '@/lib/utils';
 
 interface StatusProps {
   status: string;
   innerRef: React.RefObject<HTMLDivElement>;
 }
 export default function Status(props: Readonly<StatusProps>) {
+  const { form } = useForm();
+  const currentDate = dateTimeRelevance(form.date);
+
   return (
     <div
       className="relative flex flex-col w-full h-full text-xs text-white bg-slate-600 aspect-status"
@@ -22,7 +29,7 @@ export default function Status(props: Readonly<StatusProps>) {
         </Avatar>
         <div className="flex flex-col">
           <span>anjimeNation</span>
-          <span>Kemarin, 10 Jumat 2023</span>
+          <span>{currentDate}</span>
         </div>
       </div>
       <div className="flex items-center w-full h-full px-8 text-sm text-center">

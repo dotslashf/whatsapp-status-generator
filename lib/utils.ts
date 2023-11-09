@@ -1,4 +1,6 @@
 import { type ClassValue, clsx } from "clsx"
+import { format, formatDistance, formatRelative, intervalToDuration } from 'date-fns'
+import { id } from 'date-fns/locale'
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
@@ -18,4 +20,15 @@ export function getRandomPositionStatus(length: number) {
 
 export function getPercentage(value: number, total: number) {
   return Math.round(value * (total / 100))
+}
+
+export function dateTimeRelevance(targetDate: Date) {
+  const intervalDate = intervalToDuration({
+    start: new Date(),
+    end: targetDate,
+  });
+
+  return intervalDate.days ?? 2 > 2
+    ? format(targetDate, "EEEE, MMM d yyyy 'pukul' HH:mm", { locale: id })
+    : formatDistance(targetDate, new Date(), { locale: id, addSuffix: true });
 }

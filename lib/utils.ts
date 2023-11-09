@@ -5,12 +5,12 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function randomPositionStatus(length: number) {
+export function getRandomPositionStatus(length: number) {
   const rand = Math.floor(Math.random() * length)
   if (rand === 0) {
     return 1
   } else if (rand < 1) {
-    return randomPositionStatus(length)
+    return getRandomPositionStatus(length)
   } else {
     return rand
   }

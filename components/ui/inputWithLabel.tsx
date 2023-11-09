@@ -1,6 +1,7 @@
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from './textarea';
+import React from 'react';
 
 interface InputWithLabelProps {
   id: string;
@@ -12,6 +13,7 @@ interface InputWithLabelProps {
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLTextAreaElement>
   ) => void;
+  onKeyDown?: any;
   placeholder?: string;
 }
 export function InputWithLabel(props: Readonly<InputWithLabelProps>) {
@@ -24,6 +26,7 @@ export function InputWithLabel(props: Readonly<InputWithLabelProps>) {
           onChange={props.onChange}
           value={props.value}
           className="bg-white"
+          rows={4}
         />
       ) : (
         <Input
@@ -33,6 +36,7 @@ export function InputWithLabel(props: Readonly<InputWithLabelProps>) {
           onChange={props.onChange}
           value={props.value}
           className="bg-white"
+          onKeyDown={props.onKeyDown}
         />
       )}
     </div>

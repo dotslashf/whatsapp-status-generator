@@ -9,6 +9,7 @@ const initialForm = {
   statusPercentage: 50,
   statusWidth: 0,
   date: new Date(),
+  statusTextSize: 'default',
 };
 interface Form {
   status: string;
@@ -17,6 +18,7 @@ interface Form {
   statusPercentage: number;
   statusWidth: number;
   date: Date;
+  statusTextSize: string;
 }
 const FormContext = createContext({
   form: initialForm,

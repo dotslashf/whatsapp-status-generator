@@ -1,11 +1,11 @@
 'use client';
 
-import { InputWithLabel } from '@/components/ui/inputWithLabel';
 import Status from './Status';
-import { useCallback, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useLayoutEffect, useRef } from 'react';
 import { toPng } from 'html-to-image';
 import { useForm } from '../hooks/useForm';
 import Form from './Form';
+import { Button } from '@/components/ui/button';
 
 export default function FormStatus() {
   const { form, setForm } = useForm();
@@ -42,12 +42,9 @@ export default function FormStatus() {
       <Form />
       {/* Status Preview */}
       <Status status={form.status} innerRef={ref} />
-      <button
-        onClick={onButtonClick}
-        className="px-4 py-2 rounded-md bg-slate-200 text-slate-900"
-      >
+      <Button onClick={onButtonClick} variant={'default'} className="mt-4">
         Download
-      </button>
+      </Button>
     </>
   );
 }

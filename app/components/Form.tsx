@@ -1,8 +1,8 @@
 import { InputWithLabel } from '@/components/ui/inputWithLabel';
 import { useForm } from '../hooks/useForm';
-import { KeyboardEvent } from 'react';
 import { Separator } from '@/components/ui/separator';
 import DatePicker from '@/components/ui/datepicker';
+import SelectDropdown from './Select';
 
 export default function Form() {
   const { form, setForm } = useForm();
@@ -23,6 +23,7 @@ export default function Form() {
         }}
       />
       <DatePicker />
+      <SelectDropdown />
       <Separator className="border border-slate-300 opacity-60" />
       <InputWithLabel
         id="numberOfStatus"

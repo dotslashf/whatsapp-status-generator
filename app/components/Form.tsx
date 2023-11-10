@@ -4,6 +4,9 @@ import { Separator } from '@/components/ui/separator';
 import DatePicker from '@/components/ui/datepicker';
 import ColorPicker from '@/components/ui/colorpicker';
 import SelectDropdown from './Select';
+import { Slider } from '@/components/ui/slider';
+import { Input } from '@/components/ui/input';
+import { Label } from '@radix-ui/react-label';
 
 export default function Form() {
   const { form, setForm } = useForm();
@@ -70,22 +73,29 @@ export default function Form() {
             }
           }}
         />
-        <InputWithLabel
-          id="statusPercentage"
-          type="number"
-          name="Persentase Status:"
-          placeholder="Masukkan Persentase Status"
-          value={form.statusPercentage}
-          onChange={(e) => {
-            if (Number(e.target.value) < 10) {
-              setForm({ ...form, statusPercentage: 10 });
-            } else if (Number(e.target.value) > 100) {
-              setForm({ ...form, statusPercentage: 100 });
-            } else {
-              setForm({ ...form, statusPercentage: Number(e.target.value) });
-            }
-          }}
-        />
+        <div className="grid items-center w-full max-w-lg gap-y-2">
+          <Label htmlFor="statusPercentage" className="text-sm">
+            Persentase Status:
+          </Label>
+          <div className="flex w-full gap-x-2">
+            <Input
+              value={form.statusPercentage}
+              readOnly={true}
+              className="text-center bg-white w-14 text-slate-600"
+            />
+            <Slider
+              defaultValue={[form.statusPercentage]}
+              max={100}
+              step={10}
+              min={10}
+              onValueChange={(value) => {
+                setForm({ ...form, statusPercentage: value[0] });
+              }}
+              id="statusPercentage"
+              className="w-full "
+            />
+          </div>
+        </div>
       </div>
       <Separator className="border border-slate-300 opacity-60" />
       <div className="flex space-x-4">

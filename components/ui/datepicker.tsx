@@ -13,7 +13,6 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { useForm } from '@/app/hooks/useForm';
-import { InputWithLabel } from './inputWithLabel';
 import { Input } from './input';
 
 function CalendarIcon() {
@@ -79,6 +78,7 @@ export default function DatePicker() {
                 new Date(`${format(date, 'yyyy-MM-dd')} ${e.target.value}`)
               );
             }}
+            suppressHydrationWarning
           />
         </div>
       </PopoverContent>

@@ -1,5 +1,5 @@
 import { type ClassValue, clsx } from "clsx"
-import { format, formatDistance, formatRelative, intervalToDuration } from 'date-fns'
+import { format, intervalToDuration } from 'date-fns'
 import { id } from 'date-fns/locale'
 import { twMerge } from "tailwind-merge"
 
@@ -28,7 +28,7 @@ export function dateTimeRelevance(targetDate: Date) {
     end: targetDate,
   });
 
-  return intervalDate.days ?? 2 > 2
-    ? format(targetDate, "MMM dd yyyy HH:mm", { locale: id })
-    : formatDistance(targetDate, new Date(), { locale: id, addSuffix: true });
+  const formatString = intervalDate.days ?? 1 > 1 ? "MMM dd yyyy HH.mm" : "HH.mm"
+
+  return format(targetDate, formatString, { locale: id })
 }

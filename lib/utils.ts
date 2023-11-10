@@ -29,6 +29,6 @@ export function dateTimeRelevance(targetDate: Date) {
   });
 
   return intervalDate.days ?? 2 > 2
-    ? format(targetDate, "EEEE, MMM d yyyy 'pukul' HH:mm", { locale: id })
+    ? format(targetDate, "MMM dd yyyy HH:mm", { locale: id })
     : formatDistance(targetDate, new Date(), { locale: id, addSuffix: true });
 }

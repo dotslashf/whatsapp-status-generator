@@ -1,18 +1,14 @@
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from './textarea';
-import React from 'react';
+import React, { ChangeEvent, InputHTMLAttributes } from 'react';
 
 interface InputWithLabelProps {
   id: string;
-  type: string;
+  type: InputHTMLAttributes<HTMLInputElement>['type'];
   name: string;
   value: any;
-  onChange: (
-    event:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
-  ) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   placeholder?: string;
 }
@@ -23,7 +19,7 @@ export function InputWithLabel(props: Readonly<InputWithLabelProps>) {
       {props.type === 'textarea' ? (
         <Textarea
           id={props.id}
-          onChange={props.onChange}
+          onChange={props.onChange as any}
           value={props.value}
           className="bg-white"
           rows={4}

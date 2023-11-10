@@ -7,12 +7,13 @@ const initialForm = {
     'Culpa non velit aliqua aliquip cupidatat quis. Duis non exercitation irure occaecat. Sit ea cillum ullamco id nisi sit nostrud aliquip qui tempor veniam. Labore sit mollit quis.',
   numberOfStatus: MIN_STATUS,
   currentStatus: 1,
-  statusPercentage: 50,
+  statusPercentage: 100,
   statusWidth: 0,
   date: new Date(),
   statusTextSize: 'default',
   backgroundColor: '#64748B',
   textColor: '#FFFFFF',
+  avatar: 'https://avatars.githubusercontent.com/u/38921923?v=4',
 };
 interface Form {
   name: string;
@@ -25,6 +26,7 @@ interface Form {
   statusTextSize: string;
   backgroundColor: string;
   textColor: string;
+  avatar: string;
 }
 const FormContext = createContext({
   form: initialForm,

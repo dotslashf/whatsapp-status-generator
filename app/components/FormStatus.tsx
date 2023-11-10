@@ -41,7 +41,12 @@ export default function FormStatus() {
       {/* Form */}
       <Form />
       {/* Status Preview */}
-      <Status status={form.status} innerRef={ref} />
+      <Status
+        status={form.status}
+        date={form.date}
+        innerRef={ref}
+        avatar={form.avatar}
+      />
       <Button onClick={onButtonClick} variant={'default'} className="mt-4">
         Download
       </Button>

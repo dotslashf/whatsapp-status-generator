@@ -6,7 +6,7 @@ import ColorPicker from '@/components/ui/colorpicker';
 import SelectDropdown from './Select';
 import { Slider } from '@/components/ui/slider';
 import { Input } from '@/components/ui/input';
-import { Label } from '@radix-ui/react-label';
+import { Label } from '@/components/ui/label';
 
 export default function Form() {
   const { form, setForm } = useForm();
@@ -41,22 +41,36 @@ export default function Form() {
       <SelectDropdown />
       <Separator className="border border-slate-300 opacity-60" />
       <InputWithLabel
-        id="numberOfStatus"
-        type="number"
-        name="Jumlah Status: "
-        placeholder="Masukkan Jumlah Status"
-        value={form.numberOfStatus}
+        id="avatar"
+        type="file"
+        name="Avatar: "
+        value={''}
         onChange={(e) => {
-          if (Number(e.target.value) < 0 || e.target.value === '') {
-            setForm({ ...form, numberOfStatus: 1 });
-          } else if (Number(e.target.value) < form.currentStatus) {
-            setForm({ ...form, numberOfStatus: form.currentStatus });
-          } else {
-            setForm({ ...form, numberOfStatus: Number(e.target.value) });
+          if (e.target.files) {
+            setForm({
+              ...form,
+              avatar: URL.createObjectURL(e.target.files[0]),
+            });
           }
         }}
       />
       <div className="flex space-x-4">
+        <InputWithLabel
+          id="numberOfStatus"
+          type="number"
+          name="Jumlah Status: "
+          placeholder="Masukkan Jumlah Status"
+          value={form.numberOfStatus}
+          onChange={(e) => {
+            if (Number(e.target.value) < 0 || e.target.value === '') {
+              setForm({ ...form, numberOfStatus: 1 });
+            } else if (Number(e.target.value) < form.currentStatus) {
+              setForm({ ...form, numberOfStatus: form.currentStatus });
+            } else {
+              setForm({ ...form, numberOfStatus: Number(e.target.value) });
+            }
+          }}
+        />
         <InputWithLabel
           id="lastStatus"
           type="number"
@@ -74,14 +88,12 @@ export default function Form() {
           }}
         />
         <div className="grid items-center w-full max-w-lg gap-y-2">
-          <Label htmlFor="statusPercentage" className="text-sm">
-            Persentase Status:
-          </Label>
+          <Label htmlFor="statusPercentage">Persentase Status:</Label>
           <div className="flex w-full gap-x-2">
             <Input
               value={form.statusPercentage}
               readOnly={true}
-              className="text-center bg-white w-14 text-slate-600"
+              className="text-center bg-white w-14 disabled:cursor-not-allowed"
             />
             <Slider
               defaultValue={[form.statusPercentage]}

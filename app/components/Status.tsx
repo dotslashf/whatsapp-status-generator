@@ -1,18 +1,18 @@
 import Bullets from '@/components/ui/bullet';
 import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar';
 import { useForm } from '../hooks/useForm';
-import { formatDistance, formatRelative, intervalToDuration } from 'date-fns';
-import { id } from 'date-fns/locale';
 import { dateTimeRelevance } from '@/lib/utils';
 import clsx from 'clsx';
 
 interface StatusProps {
   status: string;
   innerRef: React.RefObject<HTMLDivElement>;
+  date: Date;
+  avatar: string;
 }
 export default function Status(props: Readonly<StatusProps>) {
   const { form } = useForm();
-  const currentDate = dateTimeRelevance(form.date);
+  const currentDate = dateTimeRelevance(props.date);
 
   return (
     <div
@@ -37,12 +37,12 @@ export default function Status(props: Readonly<StatusProps>) {
             d="M15.75 19.5L8.25 12l7.5-7.5"
           />
         </svg>
-        <Avatar className="w-8 h-8 mr-2">
+        <Avatar className="mr-2">
           <AvatarImage
-            src="https://avatars.githubusercontent.com/u/38921923?v=4"
-            className="rounded-full"
+            src={props.avatar}
+            className="object-cover object-center w-8 h-8 rounded-full aspect-square"
           />
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarFallback className="w-8 h-8">CN</AvatarFallback>
         </Avatar>
         <div className="flex flex-col">
           <span>{form.name ? form.name : "Sample Name"}</span>

@@ -2,6 +2,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from './textarea';
 import React, { ChangeEvent, InputHTMLAttributes } from 'react';
+import clsx from 'clsx';
 
 interface InputWithLabelProps {
   id: string;
@@ -11,10 +12,16 @@ interface InputWithLabelProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   placeholder?: string;
+  className?: string;
 }
 export function InputWithLabel(props: Readonly<InputWithLabelProps>) {
   return (
-    <div className="grid items-center w-full max-w-lg gap-y-2">
+    <div
+      className={clsx(
+        'grid items-center w-full max-w-lg gap-y-2',
+        props.className
+      )}
+    >
       <Label htmlFor={props.id}>{props.name}</Label>
       {props.type === 'textarea' ? (
         <Textarea

@@ -46,6 +46,7 @@ export default function FormStatus() {
         date={form.date}
         innerRef={ref}
         avatar={form.avatar}
+        isSelfStatus={form.isSelfStatus}
       />
       <Button onClick={onButtonClick} variant={'default'} className="mt-4">
         Download

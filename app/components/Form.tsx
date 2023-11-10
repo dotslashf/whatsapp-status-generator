@@ -7,6 +7,7 @@ import SelectDropdown from './Select';
 import { Slider } from '@/components/ui/slider';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Switch } from '@/components/ui/switch';
 
 export default function Form() {
   const { form, setForm } = useForm();
@@ -40,20 +41,36 @@ export default function Form() {
       <DatePicker />
       <SelectDropdown />
       <Separator className="border border-slate-300 opacity-60" />
-      <InputWithLabel
-        id="avatar"
-        type="file"
-        name="Avatar: "
-        value={''}
-        onChange={(e) => {
-          if (e.target.files) {
-            setForm({
-              ...form,
-              avatar: URL.createObjectURL(e.target.files[0]),
-            });
-          }
-        }}
-      />
+      <div className="flex justify-between space-x-4">
+        <InputWithLabel
+          id="avatar"
+          type="file"
+          name="Avatar: "
+          value={''}
+          className="w-2/3"
+          onChange={(e) => {
+            if (e.target.files) {
+              setForm({
+                ...form,
+                avatar: URL.createObjectURL(e.target.files[0]),
+              });
+            }
+          }}
+        />
+        <div className="flex flex-col items-start justify-center w-1/3 space-y-2">
+          <Label htmlFor="statusFor">Status Sendiri?</Label>
+          <Switch
+            id="statusFor"
+            checked={form.isSelfStatus}
+            onCheckedChange={(e) =>
+              setForm({
+                ...form,
+                isSelfStatus: e,
+              })
+            }
+          />
+        </div>
+      </div>
       <div className="flex space-x-4">
         <InputWithLabel
           id="numberOfStatus"

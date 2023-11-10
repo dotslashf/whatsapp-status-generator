@@ -14,6 +14,7 @@ const initialForm = {
   backgroundColor: '#64748B',
   textColor: '#FFFFFF',
   avatar: 'https://avatars.githubusercontent.com/u/38921923?v=4',
+  isSelfStatus: false,
 };
 interface Form {
   name: string;
@@ -27,6 +28,7 @@ interface Form {
   backgroundColor: string;
   textColor: string;
   avatar: string;
+  isSelfStatus: boolean;
 }
 const FormContext = createContext({
   form: initialForm,

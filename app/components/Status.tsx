@@ -9,6 +9,7 @@ interface StatusProps {
   innerRef: React.RefObject<HTMLDivElement>;
   date: Date;
   avatar: string;
+  isSelfStatus: boolean;
 }
 export default function Status(props: Readonly<StatusProps>) {
   const { form } = useForm();
@@ -68,7 +69,7 @@ export default function Status(props: Readonly<StatusProps>) {
         <p
           className={clsx(
             'w-full',
-            form.statusTextSize === 'small' && 'text-md',
+            form.statusTextSize === 'small' && 'text-base',
             form.statusTextSize === 'default' && 'text-lg',
             form.statusTextSize === 'large' && 'text-xl'
           )}
@@ -93,7 +94,9 @@ export default function Status(props: Readonly<StatusProps>) {
             d="M4.5 15.75l7.5-7.5 7.5 7.5"
           />
         </svg>
-        <span className="text-md">Bagikan</span>
+        <span className="text-base">
+          {props.isSelfStatus ? 'Bagikan' : 'Balas'}
+        </span>
       </div>
     </div>
   );

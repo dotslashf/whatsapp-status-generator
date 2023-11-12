@@ -2,6 +2,7 @@ import { InputWithLabel } from '@/components/ui/inputWithLabel';
 import { useForm } from '../hooks/useForm';
 import { Separator } from '@/components/ui/separator';
 import DatePicker from '@/components/ui/datepicker';
+import ColorPicker from '@/components/ui/colorpicker';
 import SelectDropdown from './Select';
 
 export default function Form() {
@@ -12,6 +13,17 @@ export default function Form() {
       <h1 className="text-lg font-bold text-center">
         Bikin Status Palsu Whatsapp 🤓
       </h1>
+      <InputWithLabel
+        id="name"
+        type="text"
+        name="Nama: "
+        placeholder="Masukkan Nama"
+        value={form.name}
+        onChange={(e) => {
+          setForm({ ...form, name: e.target.value });
+        }}
+      />
+      <Separator className="border border-slate-300 opacity-60" />
       <InputWithLabel
         id="status"
         type="textarea"
@@ -72,6 +84,27 @@ export default function Form() {
             } else {
               setForm({ ...form, statusPercentage: Number(e.target.value) });
             }
+          }}
+        />
+      </div>
+      <Separator className="border border-slate-300 opacity-60" />
+      <div className="flex space-x-4">
+        <ColorPicker
+          id="backgroundColor"
+          name="Warna Latar Belakang:"
+          value={form.backgroundColor}
+          gradient={true}
+          onChange={(e) => {
+            setForm({ ...form, backgroundColor: e.target.value });
+          }}
+        />
+        <ColorPicker
+          id="textColor"
+          name="Warna Teks:"
+          value={form.textColor}
+          gradient={false}
+          onChange={(e) => {
+            setForm({ ...form, textColor: e.target.value });
           }}
         />
       </div>

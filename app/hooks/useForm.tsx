@@ -2,6 +2,7 @@ import React, { useState, createContext, useMemo } from 'react';
 
 const MIN_STATUS = 1;
 const initialForm = {
+  name: 'anjimeNation',
   status:
     'Culpa non velit aliqua aliquip cupidatat quis. Duis non exercitation irure occaecat. Sit ea cillum ullamco id nisi sit nostrud aliquip qui tempor veniam. Labore sit mollit quis.',
   numberOfStatus: MIN_STATUS,
@@ -10,8 +11,11 @@ const initialForm = {
   statusWidth: 0,
   date: new Date(),
   statusTextSize: 'default',
+  backgroundColor: '#64748B',
+  textColor: '#FFFFFF',
 };
 interface Form {
+  name: string;
   status: string;
   numberOfStatus: number;
   currentStatus: number;
@@ -19,6 +23,8 @@ interface Form {
   statusWidth: number;
   date: Date;
   statusTextSize: string;
+  backgroundColor: string;
+  textColor: string;
 }
 const FormContext = createContext({
   form: initialForm,

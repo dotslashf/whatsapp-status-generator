@@ -16,12 +16,7 @@ interface InputWithLabelProps {
 }
 export function InputWithLabel(props: Readonly<InputWithLabelProps>) {
   return (
-    <div
-      className={clsx(
-        'grid items-center w-full max-w-lg gap-y-2',
-        props.className
-      )}
-    >
+    <div className={clsx('grid items-center w-full gap-y-2', props.className)}>
       <Label htmlFor={props.id}>{props.name}</Label>
       {props.type === 'textarea' ? (
         <Textarea

@@ -4,7 +4,6 @@ import { Progress } from './progress';
 
 export default function Bullets() {
   const { form, setForm } = useForm();
-  const width = Math.floor(form.statusWidth / form.numberOfStatus);
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -20,20 +19,17 @@ export default function Bullets() {
   };
 
   const ArrayProgress = Array.from(Array(form.numberOfStatus).keys()).map(
-    (i) => (
-      <Progress
-        key={i}
-        className="h-1"
-        style={{ width: `${width}px` }}
-        value={
-          i === form.currentStatus - 1
-            ? form.statusPercentage
-            : isLoading(i)
-            ? 100
-            : 0
-        }
-      />
-    )
+    (i) => {
+      let value = 0;
+
+      if (i === form.currentStatus - 1) {
+        value = form.statusPercentage;
+      } else if (isLoading(i)) {
+        value = 100;
+      }
+
+      return <Progress key={i} className="h-1" value={value} />;
+    }
   );
 
   return (

@@ -7,7 +7,7 @@ const initialForm = {
     'Culpa non velit aliqua aliquip cupidatat quis. Duis non exercitation irure occaecat. Sit ea cillum ullamco id nisi sit nostrud aliquip qui tempor veniam. Labore sit mollit quis.',
   numberOfStatus: MIN_STATUS,
   currentStatus: 1,
-  statusPercentage: 100,
+  statusPercentage: 50,
   statusWidth: 0,
   date: new Date(),
   statusTextSize: 'default',

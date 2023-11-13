@@ -1,18 +1,20 @@
 'use client';
 
 import Status from './Status';
-import { useCallback, useLayoutEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { toPng } from 'html-to-image';
 import { useForm } from '../hooks/useForm';
 import Form from './Form';
 import { Button } from '@/components/ui/button';
+import { dateTimeRelevance } from '@/lib/utils';
 
 export default function FormStatus() {
   const { form, setForm } = useForm();
 
   const ref = useRef<HTMLDivElement>(null);
+  const date = dateTimeRelevance(form.date);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setForm({
       ...form,
       statusWidth: ref.current?.offsetWidth ?? 500,
@@ -27,7 +29,7 @@ export default function FormStatus() {
     toPng(ref.current, { cacheBust: true })
       .then((dataUrl) => {
         const link = document.createElement('a');
-        link.download = 'my-image-name.png';
+        link.download = `${new Date().getTime()}.png`;
         link.href = dataUrl;
         link.click();
       })
@@ -39,16 +41,16 @@ export default function FormStatus() {
   return (
     <>
       {/* Form */}
-      <Form />
+      <Form onButtonClick={onButtonClick} />
       {/* Status Preview */}
       <Status
         status={form.status}
-        date={form.date}
+        date={date}
         innerRef={ref}
         avatar={form.avatar}
         isSelfStatus={form.isSelfStatus}
       />
-      <Button onClick={onButtonClick} variant={'default'} className="mt-4">
+      <Button onClick={onButtonClick} variant={'default'} className="lg:hidden">
         Download
       </Button>
     </>

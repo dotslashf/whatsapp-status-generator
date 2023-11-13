@@ -1,6 +1,5 @@
 import { InputWithLabel } from '@/components/ui/inputWithLabel';
 import { useForm } from '../hooks/useForm';
-import { Separator } from '@/components/ui/separator';
 import DatePicker from '@/components/ui/datepicker';
 import ColorPicker from '@/components/ui/colorpicker';
 import SelectDropdown from './Select';
@@ -8,12 +7,15 @@ import { Slider } from '@/components/ui/slider';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
-
-export default function Form() {
+import { Button } from '@/components/ui/button';
+interface FormProps {
+  onButtonClick: () => void;
+}
+export default function Form(props: FormProps) {
   const { form, setForm } = useForm();
 
   return (
-    <div className="flex flex-col w-full pb-4 space-y-3">
+    <div className="flex flex-col w-full p-3 space-y-3 border rounded-md">
       <h1 className="text-lg font-bold text-center">
         Bikin Status Palsu Whatsapp 🤓
       </h1>
@@ -27,7 +29,6 @@ export default function Form() {
           setForm({ ...form, name: e.target.value });
         }}
       />
-      <Separator className="border border-slate-300 opacity-60" />
       <InputWithLabel
         id="status"
         type="textarea"
@@ -40,7 +41,6 @@ export default function Form() {
       />
       <DatePicker />
       <SelectDropdown />
-      <Separator className="border border-slate-300 opacity-60" />
       <div className="flex justify-between space-x-4">
         <InputWithLabel
           id="avatar"
@@ -104,7 +104,7 @@ export default function Form() {
             }
           }}
         />
-        <div className="grid items-center w-full max-w-lg gap-y-2">
+        <div className="grid items-center w-full gap-y-2">
           <Label htmlFor="statusPercentage">Persentase Status:</Label>
           <div className="flex w-full gap-x-2">
             <Input
@@ -126,7 +126,6 @@ export default function Form() {
           </div>
         </div>
       </div>
-      <Separator className="border border-slate-300 opacity-60" />
       <div className="flex space-x-4">
         <ColorPicker
           id="backgroundColor"
@@ -147,7 +146,13 @@ export default function Form() {
           }}
         />
       </div>
-      <Separator className="border border-slate-300 opacity-60" />
+      <Button
+        onClick={props.onButtonClick}
+        variant={'default'}
+        className="hidden mt-4 lg:block"
+      >
+        Download
+      </Button>
     </div>
   );
 }

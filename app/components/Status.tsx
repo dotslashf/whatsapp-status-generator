@@ -16,7 +16,8 @@ export default function Status(props: Readonly<StatusProps>) {
 
   return (
     <div
-      className="relative flex flex-col w-full h-full text-xs text-white rounded-md bg-slate-500 aspect-status"
+      className="relative flex flex-col w-full h-full text-xs text-white rounded-md aspect-status"
+      style={{ background: form.backgroundColor }}
       ref={props.innerRef}
     >
       <Bullets />
@@ -44,7 +45,7 @@ export default function Status(props: Readonly<StatusProps>) {
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
         <div className="flex flex-col">
-          <span>anjimeNation</span>
+          <span>{form.name ? form.name : "Sample Name"}</span>
           <span>{currentDate}</span>
         </div>
         <svg
@@ -71,6 +72,7 @@ export default function Status(props: Readonly<StatusProps>) {
             form.statusTextSize === 'default' && 'text-lg',
             form.statusTextSize === 'large' && 'text-xl'
           )}
+          style={{ color: form.textColor }}
         >
           {props.status}
         </p>

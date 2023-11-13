@@ -46,7 +46,7 @@ export default function Status(props: Readonly<StatusProps>) {
         </Avatar>
         <div className="flex flex-col text-lg">
           <span>{form.name ? form.name : 'Sample Name'}</span>
-          <span>{props.date}</span>
+          <span suppressHydrationWarning>{props.date}</span>
         </div>
         <svg
           fill="none"

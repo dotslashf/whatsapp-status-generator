@@ -14,6 +14,36 @@ interface FormProps {
 export default function Form(props: FormProps) {
   const { form, setForm } = useForm();
 
+  const textSizeOptions = [
+    {
+      value: 'small',
+      label: 'Kecil',
+    },
+    {
+      value: 'default',
+      label: 'Sedang',
+    },
+    {
+      value: 'large',
+      label: 'Besar',
+    },
+  ];
+
+  const textFontOptions = [
+    {
+      value: 'font-inter',
+      label: 'Default',
+    },
+    {
+      value: 'font-dosis',
+      label: 'Dosis',
+    },
+    {
+      value: 'font-inconsolata',
+      label: 'Inconsolata',
+    },
+  ];
+
   return (
     <div className="flex flex-col w-full p-3 space-y-3 border rounded-md">
       <h1 className="text-lg font-bold text-center">
@@ -40,7 +70,16 @@ export default function Form(props: FormProps) {
         }}
       />
       <DatePicker />
-      <SelectDropdown />
+      <SelectDropdown
+        placeholder="Ukuran Text"
+        options={textSizeOptions}
+        id="statusTextSize"
+      />
+      <SelectDropdown
+        placeholder="Jenis Font"
+        options={textFontOptions}
+        id="statusFontName"
+      />
       <div className="flex justify-between space-x-4">
         <InputWithLabel
           id="avatar"

@@ -73,6 +73,10 @@ module.exports = {
       aspectRatio: {
         status: '9 / 16',
       },
+      fontFamily: {
+        dosis: ['var(--font-dosis)', 'sans-serif'],
+        inconsolata: ['var(--font-inconsolata)', 'monospace'],
+      },
     },
   },
   plugins: [require('tailwindcss-animate')],

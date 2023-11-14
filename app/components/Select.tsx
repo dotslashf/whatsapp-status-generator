@@ -7,23 +7,35 @@ import {
 } from '@/components/ui/select';
 import { useForm } from '../hooks/useForm';
 
-export default function SelectDropdown() {
+interface SelectOption {
+  value: string;
+  label: string;
+}
+interface SelectDropdownProps {
+  options: SelectOption[];
+  placeholder: string;
+  id: string;
+}
+export default function SelectDropdown(props: Readonly<SelectDropdownProps>) {
   const { form, setForm } = useForm();
 
   return (
     <Select
       onValueChange={(e) => {
-        setForm({ ...form, statusTextSize: e });
+        setForm({ ...form, [props.id]: e });
+        console.log(props.id, e);
       }}
-      defaultValue={form.statusTextSize}
+      defaultValue={form[props.id as keyof typeof form].toString()}
     >
       <SelectTrigger className="w-full bg-white">
-        <SelectValue placeholder="Ukuran Status" />
+        <SelectValue placeholder={props.placeholder} />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="small">Kecil</SelectItem>
-        <SelectItem value="default">Sedang</SelectItem>
-        <SelectItem value="large">Besar</SelectItem>
+        {props.options.map((option) => (
+          <SelectItem key={option.value} value={option.value}>
+            {option.label}
+          </SelectItem>
+        ))}
       </SelectContent>
     </Select>
   );

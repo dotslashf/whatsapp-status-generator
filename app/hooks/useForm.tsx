@@ -11,6 +11,7 @@ const initialForm = {
   statusWidth: 0,
   date: new Date(),
   statusTextSize: 'default',
+  statusFontName: 'font-inter',
   backgroundColor: '#64748B',
   textColor: '#FFFFFF',
   avatar: 'https://avatars.githubusercontent.com/u/38921923?v=4',
@@ -25,10 +26,12 @@ interface Form {
   statusWidth: number;
   date: Date;
   statusTextSize: string;
+  statusFontName: string;
   backgroundColor: string;
   textColor: string;
   avatar: string;
   isSelfStatus: boolean;
+  [key: string]: string | number | Date | boolean;
 }
 const FormContext = createContext({
   form: initialForm,

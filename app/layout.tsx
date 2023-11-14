@@ -1,6 +1,12 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Dosis, Inconsolata } from 'next/font/google';
 import './globals.css';
+
+export const dosis = Dosis({ subsets: ['latin'], variable: '--font-dosis' });
+export const inconsolata = Inconsolata({
+  subsets: ['latin'],
+  variable: '--font-inconsolata',
+});
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,7 +21,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="w-full">
+    <html
+      lang="en"
+      className={`w-full ${dosis.variable} ${inconsolata.variable}`}
+    >
       <body className={inter.className}>{children}</body>
     </html>
   );

@@ -2,6 +2,7 @@ import Bullets from '@/components/ui/bullet';
 import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar';
 import { useForm } from '../hooks/useForm';
 import clsx from 'clsx';
+import { use, useEffect, useRef } from 'react';
 
 interface StatusProps {
   status: string;
@@ -12,6 +13,11 @@ interface StatusProps {
 }
 export default function Status(props: Readonly<StatusProps>) {
   const { form } = useForm();
+  const fontFamily = useRef(form.statusFontName);
+
+  useEffect(() => {
+    fontFamily.current = form.statusFontName;
+  }, [form.statusFontName]);
 
   return (
     <div
@@ -70,7 +76,8 @@ export default function Status(props: Readonly<StatusProps>) {
             'w-full',
             form.statusTextSize === 'small' && 'text-lg',
             form.statusTextSize === 'default' && 'text-xl',
-            form.statusTextSize === 'large' && 'text-2xl'
+            form.statusTextSize === 'large' && 'text-2xl',
+            form.statusFontName
           )}
           style={{ color: form.textColor }}
         >

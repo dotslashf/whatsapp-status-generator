@@ -23,30 +23,6 @@ export default function FormStatus() {
     },
   });
 
-  useEffect(() => {
-    setForm({
-      ...form,
-      statusWidth: ref.current?.offsetWidth ?? 500,
-    });
-  }, [ref.current?.offsetWidth]);
-
-  // const onButtonClick = useCallback(() => {
-  //   if (ref.current === null) {
-  //     return;
-  //   }
-
-  //   toPng(ref.current, { cacheBust: true })
-  //     .then((dataUrl) => {
-  //       const link = document.createElement('a');
-  //       link.download = `${new Date().getTime()}.png`;
-  //       link.href = dataUrl;
-  //       link.click();
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [ref]);
-
   return (
     <>
       {/* Form */}

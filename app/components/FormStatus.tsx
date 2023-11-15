@@ -41,7 +41,7 @@ export default function FormStatus() {
         className="lg:hidden"
         size={'xl'}
       >
-        Download asd
+        Download
       </Button>
     </>
   );

@@ -47,10 +47,10 @@ export default function Status(props: Readonly<StatusProps>) {
         </div>
         <CircularDotIcon className="w-8 h-8 ml-auto" />
       </div>
-      <div className="flex items-center px-8 m-auto text-sm text-center">
+      <div className="flex items-center px-4 m-auto text-sm text-center">
         <p
           className={clsx(
-            'w-full',
+            'whitespace-break-spaces text-center w-fit',
             form.statusTextSize === 'small' && 'text-lg',
             form.statusTextSize === 'default' && 'text-xl',
             form.statusTextSize === 'large' && 'text-2xl',

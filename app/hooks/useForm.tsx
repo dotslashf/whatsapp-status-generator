@@ -4,7 +4,7 @@ const MIN_STATUS = 1;
 const initialForm = {
   name: 'anjimeNation',
   status:
-    'Culpa non velit aliqua aliquip cupidatat quis. Duis non exercitation irure occaecat. Sit ea cillum ullamco id nisi sit nostrud aliquip qui tempor veniam. Labore sit mollit quis.',
+    'Ini adalah contoh status whatsapp yang saya buat dengan menggunakan whatsapp status generator. Silahkan kunjungi https://whatsapp-status-generator.vercel.app/ untuk membuat status whatsapp kamu sendiri.',
   numberOfStatus: MIN_STATUS,
   currentStatus: 1,
   statusPercentage: 50,

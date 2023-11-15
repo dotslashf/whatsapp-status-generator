@@ -229,6 +229,7 @@ export default function Form(props: FormProps) {
         onClick={props.onButtonClick}
         variant={'brand'}
         className="hidden mt-4 lg:block"
+        size={'xl'}
       >
         Download
       </Button>

@@ -22,10 +22,14 @@ import {
   FontIcon,
   PersonIcon,
   SizeIcon,
+  StarIcon,
   TextIcon,
 } from './Icons';
+import Link from 'next/link';
+
 interface FormProps {
   onButtonClick: () => void;
+  stars: number;
 }
 export default function Form(props: FormProps) {
   const { form, setForm } = useForm();
@@ -233,6 +237,13 @@ export default function Form(props: FormProps) {
       >
         Download
       </Button>
+      <Link
+        href={'https://github.com/dotslashf/whatsapp-status-generator'}
+        className="items-center justify-center hidden h-10 px-8 space-x-4 text-sm font-medium transition-colors bg-yellow-400 border rounded-md shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border-input hover:bg-yellow-500 hover:text-accent-foreground lg:flex lg:items-center lg:justify-center"
+        target="_blank"
+      >
+        <StarIcon className="w-4 h-4 mr-2" /> Stars {props.stars}
+      </Link>
     </div>
   );
 }

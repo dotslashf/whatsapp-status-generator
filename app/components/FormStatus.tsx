@@ -50,7 +50,12 @@ export default function FormStatus() {
         avatar={form.avatar}
         isSelfStatus={form.isSelfStatus}
       />
-      <Button onClick={onButtonClick} variant={'default'} className="lg:hidden">
+      <Button
+        onClick={onButtonClick}
+        variant={'brand'}
+        className="lg:hidden"
+        size={'xl'}
+      >
         Download
       </Button>
     </>

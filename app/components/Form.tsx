@@ -16,6 +16,7 @@ import {
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
 import {
+  BrandWhatsappIcon,
   CalendarIcon,
   ConfigIcon,
   FontIcon,
@@ -62,7 +63,9 @@ export default function Form(props: FormProps) {
   return (
     <div className="flex flex-col w-full p-3 space-y-3 border rounded-md">
       <h1 className="text-lg font-bold text-center">
-        Bikin Status Palsu Whatsapp 🤓
+        <span className="flex items-center justify-center">
+          Bikin Status Palsu <BrandWhatsappIcon className="w-5 h-5 ml-2" />
+        </span>
       </h1>
       <InputWithLabel
         id="name"
@@ -224,7 +227,7 @@ export default function Form(props: FormProps) {
       </Collapsible>
       <Button
         onClick={props.onButtonClick}
-        variant={'default'}
+        variant={'brand'}
         className="hidden mt-4 lg:block"
       >
         Download

@@ -12,7 +12,7 @@ const initialForm = {
   date: new Date(),
   statusTextSize: 'default',
   statusFontName: 'font-inter',
-  backgroundColor: '#64748B',
+  backgroundColor: '#128C7E',
   textColor: '#FFFFFF',
   avatar: 'https://avatars.githubusercontent.com/u/38921923?v=4',
   isSelfStatus: false,

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Dosis, Inconsolata } from 'next/font/google';
 import './globals.css';
+import Script from 'next/script';
 
 const dosis = Dosis({ subsets: ['latin'], variable: '--font-dosis' });
 const inconsolata = Inconsolata({
@@ -25,6 +26,16 @@ export default function RootLayout({
       lang="en"
       className={`w-full ${dosis.variable} ${inconsolata.variable}`}
     >
+      <Script src='"https://www.googletagmanager.com/gtag/js?id=G-W5DVFW6FMZ"' />
+      <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+ 
+          gtag('config', 'G-W5DVFW6FMZ');
+        `}
+      </Script>
       <body className={inter.className}>{children}</body>
     </html>
   );

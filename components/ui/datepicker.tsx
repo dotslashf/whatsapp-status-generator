@@ -53,7 +53,6 @@ export default function DatePicker() {
             !date && 'text-muted-foreground'
           )}
         >
-          <CalendarIcon />
           {date ? (
             format(date, 'PPP', { locale: id })
           ) : (

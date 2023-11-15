@@ -15,6 +15,14 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
+import {
+  CalendarIcon,
+  ConfigIcon,
+  FontIcon,
+  PersonIcon,
+  SizeIcon,
+  TextIcon,
+} from './Icons';
 interface FormProps {
   onButtonClick: () => void;
 }
@@ -65,6 +73,8 @@ export default function Form(props: FormProps) {
         onChange={(e) => {
           setForm({ ...form, name: e.target.value });
         }}
+        icon={<PersonIcon className="w-5 h-5 mr-2 " />}
+        isLabelHidden={true}
       />
       <InputWithLabel
         id="status"
@@ -75,30 +85,43 @@ export default function Form(props: FormProps) {
         onChange={(e) => {
           setForm({ ...form, status: e.target.value });
         }}
+        icon={<TextIcon className="w-5 h-5 mr-2 " />}
+        isLabelHidden={true}
       />
-      <DatePicker />
-      <SelectDropdown
-        placeholder="Ukuran Text"
-        options={textSizeOptions}
-        id="statusTextSize"
-      />
-      <SelectDropdown
-        placeholder="Jenis Font"
-        options={textFontOptions}
-        id="statusFontName"
-      />
+      <div className="flex items-center">
+        <CalendarIcon className="w-5 h-5 mr-2 " />
+        <DatePicker />
+      </div>
+      <div className="flex items-center">
+        <SizeIcon className="w-5 h-5 mr-2 " />
+        <SelectDropdown
+          placeholder="Ukuran Text"
+          options={textSizeOptions}
+          id="statusTextSize"
+        />
+      </div>
+      <div className="flex items-center">
+        <FontIcon className="w-5 h-5 mr-2 " />
+        <SelectDropdown
+          placeholder="Jenis Font"
+          options={textFontOptions}
+          id="statusFontName"
+        />
+      </div>
       <Collapsible>
-        <CollapsibleTrigger className="flex items-center justify-between w-full px-3 py-2 text-sm bg-white border rounded-md shadow-sm h-9 border-input ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50">
-          <span>Options</span>
-        </CollapsibleTrigger>
-        <CollapsibleContent id="options" className="flex flex-col space-y-2">
+        <div className="flex items-center">
+          <ConfigIcon className="w-5 h-5 mr-2 " />
+          <CollapsibleTrigger className="flex items-center justify-between w-full px-3 py-2 text-sm bg-white border rounded-md shadow-sm h-9 border-input ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50">
+            <span>Options</span>
+          </CollapsibleTrigger>
+        </div>
+        <CollapsibleContent id="options" className="flex flex-col space-y-3">
           <div className="flex justify-between mt-4 space-x-4">
             <InputWithLabel
               id="avatar"
               type="file"
               name="Avatar: "
               value={''}
-              className="w-2/3"
               onChange={(e) => {
                 if (e.target.files) {
                   setForm({
@@ -155,32 +178,32 @@ export default function Form(props: FormProps) {
                 }
               }}
             />
-            <div className="grid items-center w-full gap-y-2">
-              <Label htmlFor="statusPercentage">Persentase Status:</Label>
-              <div className="flex w-full gap-x-2">
-                <Input
-                  value={form.statusPercentage}
-                  readOnly={true}
-                  className="text-center bg-white w-14 disabled:cursor-not-allowed"
-                />
-                <Slider
-                  defaultValue={[form.statusPercentage]}
-                  max={100}
-                  step={10}
-                  min={10}
-                  onValueChange={(value) => {
-                    setForm({ ...form, statusPercentage: value[0] });
-                  }}
-                  id="statusPercentage"
-                  className="w-full "
-                />
-              </div>
+          </div>
+          <div className="grid items-center w-full gap-y-2">
+            <Label htmlFor="statusPercentage">Persentase Status:</Label>
+            <div className="flex w-full gap-x-2">
+              <Input
+                value={form.statusPercentage}
+                readOnly={true}
+                className="text-center bg-white w-14 disabled:cursor-not-allowed"
+              />
+              <Slider
+                defaultValue={[form.statusPercentage]}
+                max={100}
+                step={10}
+                min={10}
+                onValueChange={(value) => {
+                  setForm({ ...form, statusPercentage: value[0] });
+                }}
+                id="statusPercentage"
+                className="w-full "
+              />
             </div>
           </div>
           <div className="flex space-x-4">
             <ColorPicker
               id="backgroundColor"
-              name="Warna Latar Belakang:"
+              name="Warna Latar:"
               value={form.backgroundColor}
               gradient={true}
               onChange={(e) => {

@@ -11,7 +11,7 @@ import {
 
 interface StatusProps {
   status: string;
-  innerRef: React.RefObject<HTMLDivElement>;
+  innerRef: (domNode: HTMLDivElement) => void;
   date: string;
   avatar: string;
   isSelfStatus: boolean;
@@ -26,7 +26,7 @@ export default function Status(props: Readonly<StatusProps>) {
 
   return (
     <div
-      className="relative flex flex-col max-w-lg text-base text-white rounded-md aspect-status"
+      className="relative flex flex-col w-full text-base text-white rounded-md aspect-status"
       style={{ background: form.backgroundColor }}
       ref={props.innerRef}
       suppressHydrationWarning

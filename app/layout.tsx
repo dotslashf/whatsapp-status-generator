@@ -26,17 +26,20 @@ export default function RootLayout({
       lang="en"
       className={`w-full ${dosis.variable} ${inconsolata.variable}`}
     >
-      <head>
-        <Script src='"https://www.googletagmanager.com/gtag/js?id=G-W5DVFW6FMZ"' />
-        <Script id="google-analytics">
-          {`
+      <Script
+        strategy="lazyOnload"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_GTAG}`}
+      />
+      <Script id="google-analytics" strategy="lazyOnload">
+        {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           
-          gtag('config', 'G-W5DVFW6FMZ');
+          gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_GTAG}'});
           `}
-        </Script>
+      </Script>
+      <head>
         <meta
           property="twitter:image"
           content="Twitter link preview image URL"
